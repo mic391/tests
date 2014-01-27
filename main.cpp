@@ -41,6 +41,7 @@ void canpuseoperator()
   pool[1]=5;
   pool[1]=buff[1];
   assert_equal(pool[0], buff[0]);
+  assert_equal(pool[1], buff[1]);
 }
 
 
