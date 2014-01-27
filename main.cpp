@@ -23,10 +23,20 @@ void canCreateRingOnPool()
   assert_equal(buff.size(), pool.size());
 }
 
+void canCreateAnotherRingOnPool()
+{
+  std::array<int, 5> pool;
+  ring<int> buff(pool.begin(), pool.end());
+  (void)buff;
+  assert_equal(buff.size(), pool.size());
+}
+
+
 int main()
 {
   canCreateRingBuffer();
   canCreateRingOnPool();
+  canCreateAnotherRingOnPool();
   std::cout << "Test Passed" << std::endl;
   return 0;
 }
