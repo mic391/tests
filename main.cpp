@@ -31,16 +31,6 @@ void canCreateAnotherRingOnPool()
   assert_equal(buff.size(), pool.size());
 }
 
-void canCreateAnotherRingOnPool()
-
-
-
-
-
-
-
-
-
 
 
 int main()
