@@ -59,6 +59,21 @@ void canUseAnotherPushBackFunc()
   assert_equal(buff2[1], 22);
 }
 
+
+void canOverloadPushBackFunc()
+{
+  std::array<int, 3> pool;
+  ring<int> buff3(pool.begin(), pool.end());
+  buff3.push_back(11);
+  buff3.push_back(22);
+  buff3.push_back(33);
+  buff3.push_back(44);
+  buff3.push_back(55);
+  assert_equal(buff3[0], 44);
+  assert_equal(buff3[1], 55);
+  assert_equal(buff3[2], 33);
+}
+
 int main()
 {
   canCreateRingBuffer();
@@ -67,6 +82,7 @@ int main()
   canUseOperator();
   canUsePushBackFunc();
   canUseAnotherPushBackFunc();
+  canOverloadPushBackFunc();
   std::cout << "Test Passed" << std::endl;
   return 0;
 }

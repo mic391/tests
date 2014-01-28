@@ -29,14 +29,13 @@ public:
     return *(begin + at);
   }
   void push_back(const_reference t) {
-	*index=t;
-	*index++;
+	if (index==end){index=begin; *index=t; *index++;}
+		else{
+		*index=t;
+		*index++;
+		}
   }
 
-
-
-  
-  
 private:
   pointer begin;
   pointer end;
