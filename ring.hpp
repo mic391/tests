@@ -29,8 +29,8 @@ public:
     return *(begin + at);
   }
   void push_back(const_reference t) {
-		*begin=t;
-		*index++;
+	*index=t;
+	*index++;
   }
 
 
