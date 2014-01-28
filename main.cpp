@@ -31,26 +31,41 @@ void canCreateAnotherRingOnPool()
   assert_equal(buff.size(), pool.size());
 }
 
-void canpuseoperator()
+void canUseOperator()
 {
-  std::array<int, 5> pool;
+  std::array<int, 5> pool{11, 22, 33, 44, 55};
   ring<int> buff(pool.begin(), pool.end());
-  (void)buff;
-  pool[0]=2;
-  pool[0]=buff[0];
-  pool[1]=5;
-  pool[1]=buff[1];
   assert_equal(pool[0], buff[0]);
   assert_equal(pool[1], buff[1]);
 }
 
+void canUsePushBackFunc()
+{
+  std::array<int, 5> pool;
+  ring<int> buff(pool.begin(), pool.end());
+  buff.push_back(11);
+  assert_equal(buff[0], 11);
+
+}
+
+
+/*void canUsePushBackFunc()
+{
+  std::array<int, 5> pool;
+  ring<int> buff(pool.begin(), pool.end());
+  buff.push_back(11);
+  buff.push_back(22);
+  assert_equal(buff[0], 11);
+  assert_equal(buff[1], 22);
+}*/
 
 int main()
 {
   canCreateRingBuffer();
   canCreateRingOnPool();
   canCreateAnotherRingOnPool();
-  canpuseoperator();
+  canUseOperator();
+  canUsePushBackFunc();
   std::cout << "Test Passed" << std::endl;
   return 0;
 }
