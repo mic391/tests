@@ -2,12 +2,13 @@
 #include "ring.hpp"
 #include <cassert>
 #include <array>
+#define assert_equal(expected, actual) assert(expected == actual);
 
-template<typename Tp, typename Vp>
+/*template<typename Tp, typename Vp>
 void assert_equal(const Tp& t, const Vp& v)
 {
   assert(t == v);
-} 
+}*/
 
 void canCreateRingBuffer()
 {
@@ -47,7 +48,7 @@ void canUsePushBackFunc()
   assert_equal(buff[0], 11);
 
 }
-
+#define assert_equal(expected, actual) assert(expected == actual);
 
 void canUseAnotherPushBackFunc()
 {
@@ -69,9 +70,9 @@ void canOverloadPushBackFunc()
   buff3.push_back(33);
   buff3.push_back(44);
   buff3.push_back(55);
-  assert_equal(buff3[0], 44);
-  assert_equal(buff3[1], 55);
-  assert_equal(buff3[2], 33);
+  assert_equal(buff3[0], 33);
+  assert_equal(buff3[1], 44);
+  assert_equal(buff3[2], 55);
 }
 
 int main()
