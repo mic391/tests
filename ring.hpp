@@ -44,6 +44,13 @@ public:
     {return *(begin);}
     else {return *(last_el);} 
   }
+  
+  reference back() {
+    
+    if (pushbackcycle==false)
+    {return *(--last_el);}
+    else {return *(--last_el);} 
+  }
 
 
 private:
