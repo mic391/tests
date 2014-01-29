@@ -75,7 +75,7 @@ void canOverloadPushBackFunc()
   assert_equal(buff3[2], 55);
 }
 
-void canUseFrontFunc()
+void canGetFrontFunc()
 {
    std::array<int, 3> pool;
    ring<int> buff4(pool.begin(), pool.end());
@@ -90,15 +90,18 @@ void canOverloadFrontFunc()
   std::array<int, 3> pool;
   ring<int> buff3(pool.begin(), pool.end());
   buff3.push_back(11);
+  assert_equal(buff3.front(), 11);
   buff3.push_back(22);
+  assert_equal(buff3.front(), 11);
   buff3.push_back(33);
   assert_equal(buff3.front(), 11);
   buff3.push_back(44);
+  assert_equal(buff3.front(), 22);
   buff3.push_back(55);
   assert_equal(buff3.front(), 33);
 }
 
-void canUseBackFunc()
+void canGetBackFunc()
 {
    std::array<int, 3> pool;
    ring<int> buff4(pool.begin(), pool.end());
@@ -110,14 +113,18 @@ void canUseBackFunc()
 void canOverloadBackFunc()
 {
    std::array<int, 3> pool;
-   ring<int> buff4(pool.begin(), pool.end());
-   buff4.push_back(11);
-   buff4.push_back(22);
-   assert_equal(buff4.back(), 22);
-   buff4.push_back(33);
-   buff4.push_back(44);
-   buff4.push_back(55);
-   assert_equal(buff4.back(), 55);
+  ring<int> buff3(pool.begin(), pool.end());
+  buff3.push_back(11);
+  assert_equal(buff3.back(), 11);
+  buff3.push_back(22);
+  assert_equal(buff3.back(), 22);
+  buff3.push_back(33);
+  assert_equal(buff3.back(), 33);
+  buff3.push_back(44);
+  assert_equal(buff3.back(), 44);
+  buff3.push_back(55);
+  assert_equal(buff3.back(), 55);
+   
    
 }
 
@@ -131,9 +138,9 @@ int main()
   canUsePushBackFunc();
   canUseAnotherPushBackFunc();
   canOverloadPushBackFunc();
-  canUseFrontFunc();
+  canGetFrontFunc();
   canOverloadFrontFunc();
-  canUseBackFunc();
+  canGetBackFunc();
   canOverloadBackFunc();
   std::cout << "Test Passed" << std::endl;
   return 0;
