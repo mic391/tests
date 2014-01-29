@@ -77,12 +77,24 @@ void canOverloadPushBackFunc()
 
 void canUseFrontFunc()
 {
+   std::array<int, 3> pool;
+   ring<int> buff4(pool.begin(), pool.end());
+   buff4.push_back(11);
+   buff4.push_back(22);
+   buff4.push_back(33);
+   assert_equal(buff4.front(), 11);
+}
+
+void canOverloadFrontFunc()
+{
   std::array<int, 3> pool;
-  ring<int> buff4(pool.begin(), pool.end());
-  buff4.push_back(11);
-  buff4.push_back(22);
-  buff4.push_back(33);
-  assert_equal(buff4.front(), 11);
+  ring<int> buff3(pool.begin(), pool.end());
+  buff3.push_back(11);
+  buff3.push_back(22);
+  buff3.push_back(33);
+  buff3.push_back(44);
+  buff3.push_back(55);
+  assert_equal(buff3.front(), 33);
 }
 
 int main()
@@ -95,6 +107,7 @@ int main()
   canUseAnotherPushBackFunc();
   canOverloadPushBackFunc();
   canUseFrontFunc();
+  canOverloadFrontFunc();
   std::cout << "Test Passed" << std::endl;
   return 0;
 }
