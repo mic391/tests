@@ -15,9 +15,9 @@ public:
   typedef const value_type& const_reference;
   
 
-  ring() : begin(nullptr), end(nullptr), oldest_el(begin) {} 
+  ring() : begin(nullptr), end(nullptr), last_el(begin) {} 
   template<typename Iterator>
-  ring(Iterator first, Iterator last) : begin(first), end(last), oldest_el(begin){}
+  ring(Iterator first, Iterator last) : begin(first), end(last), last_el(begin){}
 	
   size_type size() const {
     return (end - begin);
@@ -25,23 +25,31 @@ public:
   reference operator[](size_type at) {
 	  if (pushbackcycle==false)
     {return *(begin + at);}
-    else {return *(oldest_el + at);}
+    else {return *(last_el + at);}
   }
   const_reference operator[](size_type at) const {
     if (pushbackcycle==false)
     {return *(begin + at);}
-    else {return *(oldest_el + at);}
+    else {return *(last_el + at);}
   }
   void push_back(const_reference t) {
-    *oldest_el = t;
-    if (++oldest_el >= end) {pushbackcycle=true;}
+    *last_el = t;
+    if (++last_el >= end) {pushbackcycle=true;}
     else {pushbackcycle=false;}
   }
+  
+  reference front() {
+    
+    if (pushbackcycle==false)
+    {return *(begin);}
+    else {return *(last_el);} 
+  }
+
 
 private:
   pointer begin;
   pointer end;
-  pointer oldest_el;
+  pointer last_el;
   bool pushbackcycle;
 };
 
