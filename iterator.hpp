@@ -6,8 +6,7 @@
 #include <iterator>
 
 template<typename Tp>
-
-class ring
+class iterator
 {
   enum cycle_type {
     first, repeated
@@ -21,15 +20,7 @@ public:
   typedef const value_type& const_reference;
   
 
-  ring() : ring(nullptr, nullptr) {} 
-
-  template<typename Iterator>
-  ring(Iterator first, Iterator last)
-    : begin(first), end(last), youngest(begin), cycle(cycle_type::first) {}
-
-  size_type size() const {
-    return (end - begin);
-  }
+}
 
   reference operator[](size_type at) {
     return *(begin + normalize(at));
@@ -39,24 +30,7 @@ public:
     return *(begin + normalize(at));
   }
 
-  void push_back(const_reference t) {
-    *youngest = t;
-    if (is_out_of_range(++youngest)) {
-      cycle = cycle_type::repeated;
-      youngest = begin;
-    }
-  }
 
-  size_type tellp() const {
-    return std::distance(begin, youngest);
-  }
-
-  const_reference front() const {
-    if (is_first_cycle()) return *begin;
-    else return *youngest;
-  }
-  
-  reference back() {return *(--youngest);}
   
 
 private:

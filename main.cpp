@@ -112,7 +112,7 @@ void canGetBackFunc()
 
 void canOverloadBackFunc()
 {
-   std::array<int, 3> pool;
+  std::array<int, 3> pool;
   ring<int> buff3(pool.begin(), pool.end());
   buff3.push_back(11);
   assert_equal(buff3.back(), 11);
@@ -124,13 +124,26 @@ void canOverloadBackFunc()
   assert_equal(buff3.back(), 44);
   buff3.push_back(55);
   assert_equal(buff3.back(), 55);
-   
-   
+ 
 }
+
+void canUsePointerOperator()
+{
+
+
+}
+
 
 
 int main()
 {
+int choice;
+std::cout <<"1 - ring test \n2 - iterator test \n    choice:";
+std::cin >> choice;	
+	
+	switch (choice)
+{
+case 1: {
   canCreateRingBuffer();
   canCreateRingOnPool();
   canCreateAnotherRingOnPool();
@@ -142,6 +155,15 @@ int main()
   canOverloadFrontFunc();
   canGetBackFunc();
   canOverloadBackFunc();
-  std::cout << "Test Passed" << std::endl;
+  std::cout << "\n  Test Passed\n" << std::endl;}
+    break;
+case 2: {
+  canUsePointerOperator();
+  std::cout << "\n  Test Passed\n" << std::endl;}
+    break;
+  
+ }
+ 
+ 
   return 0;
 }
