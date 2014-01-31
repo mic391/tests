@@ -141,7 +141,9 @@ template<typename ValueType, typename Pointer = ValueType*,
   typename DifferenceType = std::size_t>
 class ring_input_iterator: private circular<ValueType,
   Pointer, ConstPointer, Reference, ConstReference,
-  SizeType, DifferenceType> {
+  SizeType, DifferenceType>, public std::iterator<
+  std::input_iterator_tag, ValueType, DifferenceType,
+  Pointer, Reference> {
 public:
   typedef circular<ValueType, Pointer, ConstPointer,
     Reference, ConstReference, SizeType, DifferenceType> base;
@@ -252,6 +254,10 @@ public:
       base::capacity());
   }
 
+  using base::capacity;
+  using base::tellp;
+  using base::tellg;
+
   void push_back(const_reference value) {
     *base::position() = value;
     base::increment();
@@ -261,13 +267,8 @@ public:
     return base::at(idx);
   }
 
-  using base::capacity;
-  using base::tellp;
-  using base::tellg;
-
   size_type size() const {
-    return
-      base::is_primal() ? base::tellp() : base::capacity();
+    return base::is_primal() ? tellp() : capacity();
   }
 
   bool empty() const {
@@ -291,13 +292,11 @@ public:
   }
 
   iterator begin() const {
-    return iterator(base::begin(), base::end(),
-      base::tellg());
+    return iterator(base::begin(), base::end(), tellg());
   }
 
   iterator end() const {
-    return iterator(base::begin(), base::end(),
-      base::tellp());
+    return iterator(base::begin(), base::end(), tellp());
   }
 };
 
