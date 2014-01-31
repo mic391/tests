@@ -126,7 +126,7 @@ public:
     return range.end();
   }
 
-protected:
+private:
   typedef boost::iterator_range<pointer> range_type;
   range_type range;
   difference_type offset;
@@ -231,7 +231,7 @@ public:
 
   ring(const ring& other)
     : ring(other.size()) {
-    std::copy(other.range.begin(), other.range.end(),
+    std::copy(other.base::begin(), other.base::end(),
       base::begin());
     base::repeate();
   }
