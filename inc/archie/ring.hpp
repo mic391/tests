@@ -1,10 +1,10 @@
 #ifndef _ARCHIE_RING_HPP_
 #define _ARCHIE_RING_HPP_
 
-#include <memory>
-#include <iterator>
-#include <algorithm>
 #include <boost/range/iterator_range.hpp>
+#include <cstddef>
+#include <iterator>
+#include <memory>
 
 namespace archie {
 namespace detail {
