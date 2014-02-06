@@ -176,6 +176,10 @@ public:
     return base::position();
   }
 
+  reference operator*() {
+    return *base::position();
+  }
+  
   const_reference operator*() const {
     return *base::position();
   }
@@ -289,6 +293,14 @@ public:
 
   reference back() {
     return base::at(size() - 1);
+  }
+
+  iterator begin() {
+    return iterator(base::begin(), base::end(), tellg());
+  }
+
+  iterator end() {
+    return iterator(base::begin(), base::end(), tellp());
   }
 
   iterator begin() const {

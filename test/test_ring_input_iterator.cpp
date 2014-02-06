@@ -8,6 +8,17 @@ protected:
   void SetUp() {
   }
 };
+template <class Type>
+class MultValue
+{
+private:
+Type Factor;
+public:
+MultValue(const Type& _Val) : Factor(_Val) {}
+void operator()(Type& elem) const
+{ elem *= Factor; }
+};
+
 
 TEST_F(test_ring_input_iterator, canCreateIterator) {
   iterator it;
@@ -79,3 +90,20 @@ TEST_F(test_ring_input_iterator, isAssignable) {
   it2 = it1;
   EXPECT_EQ(11, *it2);
 }
+
+TEST_F(test_ring_input_iterator, canUseForEach) {
+  ring buff(3);
+  buff.push_back(11);
+  buff.push_back(22);
+  iterator it(&buff.front(), &buff.front() + buff.capacity());
+  std::for_each(buff.begin(),buff.end(), [](int& i) { i*=2; });
+  EXPECT_EQ(22, *it);
+ // EXPECT_EQ(22, *(std::prev(it, 1)));    doesn't work - for next test
+  ++it;
+  EXPECT_EQ(44, *it);
+}
+
+
+
+
+

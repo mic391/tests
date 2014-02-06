@@ -2,6 +2,9 @@
 #include "archie/ring.hpp"
 #include <memory>
 #include <array>
+#include <vector>
+#include <algorithm>
+#include <iostream>
 
 class test_ring: public testing::Test {
 protected:
@@ -31,6 +34,7 @@ protected:
     }
   }
 };
+
 
 TEST_F(test_ring, canCreateRingBuffer) {
   archie::ring<int> buffer;
@@ -121,3 +125,5 @@ TEST_F(test_ring, canGetEnd)
   ++it;
   EXPECT_EQ(it, buffptr->end());
 }
+
+
