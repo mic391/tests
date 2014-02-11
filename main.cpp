@@ -1,8 +1,13 @@
 #include <iostream>
 #include "ring.hpp"
+#include "iterator.hpp"
 #include <cassert>
 #include <array>
-#define assert_equal(expected, actual) assert(expected == actual);
+#define assert_equal(expected, actual) assert(expected == actual); 
+
+//zanim sie zacznie kompilowac pierw wchodzi preprocessor (odszukuje pewnych fragmentow kodu i podmienia je)
+
+
 
 /*template<typename Tp, typename Vp>
 void assert_equal(const Tp& t, const Vp& v)
@@ -129,8 +134,11 @@ void canOverloadBackFunc()
 
 void canUsePointerOperator()
 {
-
-
+  std::array<int, 3> pool;
+  ring<int> buff(pool.begin(), pool.end());
+  iterator<int> it(&buff.front(), &buff.back() + 1);
+  buff.push_back(33);
+  assert_equal(33, *it);
 }
 
 
@@ -158,7 +166,7 @@ case 1: {
   std::cout << "\n  Test Passed\n" << std::endl;}
     break;
 case 2: {
-  canUsePointerOperator();
+//  canUsePointerOperator();
   std::cout << "\n  Test Passed\n" << std::endl;}
     break;
   

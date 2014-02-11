@@ -25,7 +25,7 @@ public:
 
   template<typename Iterator>
   ring(Iterator first, Iterator last)
-    : begin(first), end(last), youngest(begin), cycle(cycle_type::first) {}
+    : begin(first), end(last), youngest(begin), cycle(cycle_type::first) {} //małe wtf :)
 
   size_type size() const {
     return (end - begin);

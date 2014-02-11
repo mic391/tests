@@ -1,5 +1,5 @@
-#ifndef _RING_HPP_INCLUDED
-#define _RING_HPP_INCLUDED
+#ifndef _ITERATOR_HPP_INCLUDED
+#define _ITERATOR_HPP_INCLUDED
 
 #include <cstddef>
 #include <vector>
@@ -8,9 +8,6 @@
 template<typename Tp>
 class iterator
 {
-  enum cycle_type {
-    first, repeated
-  };
 
 public:
   typedef Tp value_type;
@@ -19,38 +16,26 @@ public:
   typedef value_type& reference;
   typedef const value_type& const_reference;
   
+  iterator() : iterator(nullptr, nullptr) {}
 
-}
+  template<typename ptr>
+  iterator(ptr first, ptr last)
+    : begin(first), end(last), p(end) {}
 
-  reference operator[](size_type at) {
-    return *(begin + normalize(at));
+  reference operator *() {
+    return *p;
   }
-
-  const_reference operator[](size_type at) const {
-    return *(begin + normalize(at));
-  }
-
-
   
+  const reference operator *() const {
+    return *p;
+  }
 
 private:
 
-  bool is_first_cycle() const {
-    return cycle == cycle_type::first;
-  }
-
-  bool is_out_of_range(pointer ptr) const {
-    return ptr < begin || ptr >= end;
-  }
-
-  size_type normalize(size_type at) const {
-    return (tellp() + at) % size();
-  }
-
-  pointer begin;
-  pointer end;
-  pointer youngest;
-  cycle_type cycle;
+   pointer p;
+   pointer begin;
+   pointer end;
+  
 };
 
 #endif
