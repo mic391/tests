@@ -1,0 +1,12 @@
+#! /usr/bin/env python
+
+options = configure = lambda x: None
+
+def build(bld):
+  bld.objects(
+    features  = 'cxx',
+    includes  = [bld.srcnode.find_dir('inc'), bld.path.abspath()],
+    source    = bld.path.ant_glob('*.cpp'),
+    target    = 'ART',
+    cxxflags  = '-g -O0 -Wall',
+  )

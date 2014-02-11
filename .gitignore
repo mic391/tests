@@ -1,0 +1,9 @@
+.waf*
+.cproject
+.externalTool*
+*.swp
+.lock-waf*
+.project
+.pydevproject
+.settings/
+build/
